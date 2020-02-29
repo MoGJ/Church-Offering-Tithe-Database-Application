@@ -1,0 +1,27 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name = "Tithe" table = "Tithe">
+      
+      <meta attribute = "class-description">
+         This class contains Tithe details. 
+      </meta>
+      
+      <id name = "member_id" type = "int" column = "member_id">
+         <generator class="native"/>
+      </id>
+      
+      <property name = "date" column = "date" type = "string"/>
+      <property name = "first_name" column = "first_name" type = "string"/>
+      <property name = "last_name" column = "last_name" type = "string"/>
+      <property name = "tithe_amount" column = "tithe_amount" type = "int"/>
+      <property name = "offering_amount" column = "offering_amount" type = "int"/>
+      <property name = "proTemple_amount" column = "proTemple_amount" type = "int"/>
+      <property name = "cash" column = "cash" type = "int"/>
+      <property name = "creditOrDebit" column = "creditOrDebit" type = "int"/>
+      
+   </class>
+</hibernate-mapping>
