@@ -472,11 +472,14 @@ public class Table_GUI_test extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //jButton1 = "Go Home" button located at top left corner of window - To close current window
+    //if user would like to go back to Maasar Home Page
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         super.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    //To use when Save button is clicked to save Offering values into Offering table in database
+    //First table displayed in Offering & Tithes Table Window
+    //Offering values from Offering Table copied into Offering class instance - Offering class instance copied into Offering database
     public void OfferingSaveBactionPerformed() {
         int cols = jTable2.getModel().getColumnCount();
         int rows = jTable2.getModel().getRowCount();
@@ -489,6 +492,7 @@ public class Table_GUI_test extends javax.swing.JFrame {
                     System.out.println("Offering value is: " + element);
                 }
             
+                //Need to add code here to add values to Offering table (need to create Offering database table)
             //offeringValues.add(i, //);
             
             }
@@ -499,7 +503,7 @@ public class Table_GUI_test extends javax.swing.JFrame {
 
     }
     
-        //To use when Save button is clicked to save Tithe values into Tithe table in database
+        //Tithe values from Tithe table copied to Tithe class instance - Tithe class instance saved into Tithe database table
         public void TitheSaveBactionPerformed() {
         int cols = jTable1.getModel().getColumnCount();
         int rows = jTable1.getModel().getRowCount();
@@ -508,20 +512,26 @@ public class Table_GUI_test extends javax.swing.JFrame {
         String element; 
         double elementNumb;
         
+        /*
+        Try - To read values from tithe table, sets values to a tithe class, 
+        the tithe class values are then added to the database via the tithe class
+        created.
+        */
         try {
             for (int i = 0; i < rows; i++) {
                 Tithe tithe = new Tithe();
                 
-                //if statement to stop loop if there is not a value detected for first name
+                //if statement - stop loop if there is not a value detected for first name
                 if (jTable1.getModel().getValueAt(i, 0) == null) {
+                    jTable1.setToolTipText("Must enter value for First Name.");
                     continue;
                 }
             for(int j = 0; j < cols; j++) {
-                //if j==5, skip to next iteration (table does not have a value in the 5th column)
+                //if j==5, skip to next iteration (table does not have a value in the 5th column - this is to leave column blank)
                 if((j==5)) {
                         continue;
                     }
-                //switch statement to set values from table to correct Tithe class value
+                //Switch statement - sets table column value to corresponding value in Tithe class
                 switch(j) {
                     case 0:
                             element = (String) jTable1.getModel().getValueAt(i, j);
@@ -581,7 +591,7 @@ public class Table_GUI_test extends javax.swing.JFrame {
             
         }
         
-        //Adding the Array of tithe values into database
+        //Adding the array of tithe values into database
         for(int i = 0; i < titheValues.size(); i++) {
             titheValues.get(i).printInfo();
             //String insert statement returned
@@ -622,7 +632,8 @@ public class Table_GUI_test extends javax.swing.JFrame {
     }
         
     
-        //To use when Save button is clicked to save Member values into Member table in database
+        //Member values from Tithe table copied to Member class instance - Member class instance saved into Member database table
+        //See jButton2ActionPerformed for details on what is missing...
         public void MemberSaveBactionPerformed() {
         int cols = jTable1.getModel().getColumnCount();
         int rows = jTable1.getModel().getRowCount();
@@ -659,9 +670,22 @@ public class Table_GUI_test extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jSpinner1PropertyChange
 
+    /*
+    Save button located at bottom of Offering & Tithes Window,
+    Copies values from Offering and Tithe tables to Offering and Tithe database tables
+    */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         OfferingSaveBactionPerformed();
         TitheSaveBactionPerformed();
+        /*
+        Leaving MemberSaveBactionPerformed() method out - Need to clean create Member information database,  
+        clean code, and edit database to allow for saving member information. Need to add code to check if 
+        if member information (first and last name) already added to the database. Alert user at time of input
+        if member name is located in database.
+        */
+//        MemberSaveBactionPerformed();
+
+        //Close Offering & Tithes Table when clicking save button
         super.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
